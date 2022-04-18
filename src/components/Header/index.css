@@ -1,0 +1,19 @@
+.fa-pen-clip {
+    font-size: 28px;
+    color: rgb(44, 159, 161);
+    margin: 0 0px 0px 10px;
+   }
+
+.header {
+    background-color: rgba(255, 255, 255, 0.728);
+    margin: 0px;
+    
+    padding: 10px 10px;
+}
+
+.title {
+    font-size: 35px;
+    color: rgb(49, 135, 155);
+    font-weight: 800;
+    padding: 0 10px;
+  }
