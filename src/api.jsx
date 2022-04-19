@@ -16,13 +16,13 @@ class Api {
         }).then(responseHandler);
     }
 
-    // getProduct(id) {
-    //     return fetch(`${this.path}/products/${id}`, {
-    //         headers: {
-    //             authorization: `Bearer ${this.token}`
-    //         }
-    //     }).then(responseHandler);
-    // }
+    getPost(id) {
+        return fetch(`${this.path}/posts/${id}`, {
+            headers: {
+                authorization: `Bearer ${this.token}`
+            }
+        }).then(responseHandler);
+    }
 
     // getReviews(id) {
     //     return fetch(`${this.path}/products/review/${id}`, {

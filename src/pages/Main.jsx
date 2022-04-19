@@ -1,13 +1,14 @@
 import React from "react";
 import Post from "../components/Post";
+import { Link } from "react-router-dom";
 
 const Page = (props) => {
     return (
         <>
-        <div className="pageTitle">{props.name}</div>
+       
         <div className="wellcome">
             <div className="greeting">Wellcome here!</div>
-            <button className="btn-create">Create post</button>
+            <Link to="/create"><button className="btn-create">Create post</button></Link>
             </div>
         <div className="container" >
         {props.posts.map(el => <Post {...el} key={el._id}/>)}
