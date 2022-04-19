@@ -1,5 +1,5 @@
 import React from "react";
-import Blog from "../components/Blog";
+import Post from "../components/Post";
 
 const Page = (props) => {
     return (
@@ -7,10 +7,10 @@ const Page = (props) => {
         <div className="pageTitle">{props.name}</div>
         <div className="wellcome">
             <div className="greeting">Wellcome here!</div>
-            <div className="btn-create">Create post</div>
+            <button className="btn-create">Create post</button>
             </div>
         <div className="container" >
-        {props.posts.map(el => <Blog {...el} key={el._id}/>)}
+        {props.posts.map(el => <Post {...el} key={el._id}/>)}
         </div>
 
 </>

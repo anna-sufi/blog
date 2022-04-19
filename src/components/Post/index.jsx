@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.css";
 
-const Blog = (props) => {
+const Post = (props) => {
 
     return (
             <div className="img_blog">
@@ -15,4 +15,4 @@ const Blog = (props) => {
            </div>
         )
 }
-export default Blog;
+export default Post;

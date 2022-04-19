@@ -26,9 +26,25 @@ body {
 	color:white;
 	padding: 10px;
 	background-color:rgba(49, 136, 155, 0.708);
-
 }
+
 .wellcome {
 	padding: 20px;
+	display: flex;
+	justify-content: space-between;
+}
+.greeting {
+	font-size: 25px;
+	font-weight: 700;
+	color:rgba(4, 38, 46, 0.906);
+	text-shadow: rgb(244, 247, 249) 1px 0 7px;
 }
 
+.btn-create {
+	padding: 10px;
+	border: none;
+	border-radius: 10px;
+	font-weight: 600;
+	color:rgba(4, 38, 46, 0.906);
+	box-shadow: rgb(244, 247, 249) 1px 0 7px;
+}

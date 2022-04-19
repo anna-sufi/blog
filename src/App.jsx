@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import Main from "./pages/Main";
 import {Routes, Route} from "react-router-dom";
 import api from "./api.jsx";
-import Blog from "./components/Blog";
+
 
 function App() {
 	const [posts, setPosts] = useState([]);
