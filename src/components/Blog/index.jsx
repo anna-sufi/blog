@@ -1,12 +1,17 @@
 import React from "react";
 import "./index.css";
 
-const Blog = () => {
+const Blog = (props) => {
 
     return (
             <div className="img_blog">
-              <div>author</div>
-
+                    <div className="blog_content">
+                          <div>{props.title && props.title}</div>
+                          <div>{props.created_at && props.created_at.slice(0, 10)}</div>
+                          <div>{props.author && props.author.name}</div>
+                         
+              
+                       </div>
            </div>
         )
 }

@@ -6,28 +6,24 @@ import api from "./api.jsx";
 import Blog from "./components/Blog";
 
 function App() {
-	const [data, setData] = useState([]);
+	const [posts, setPosts] = useState([]);
     useEffect(() => {
 	  api.getPosts().then(ans => {
-		setData(ans);
+		setPosts(ans);
 		console.log(ans);
-		
 		},);}, [])
     
-		return (
+	return (
         <>
         <Header/>
-		
-		
         <main>
 		 <Routes>
 			 
-			 <Route path="/" element={<Main name="All posts"/>}/>
+			 <Route path="/" element={<Main posts={posts} name="All posts"/>}/>
 			 {/* <Route path="/product/:id" element={<Product name="Товар" />}/> */}
 			 {/* <Route path="/profile" element={<Profile name="Личные данные"/>}/> */}
 		 </Routes>
 		</main>
-       
         
 </>
     )

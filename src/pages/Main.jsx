@@ -9,8 +9,10 @@ const Page = (props) => {
             <div className="greeting">Wellcome here!</div>
             <div className="btn-create">Create post</div>
             </div>
-        <div className="container" >POSTS</div>
-        <Blog/>
+        <div className="container" >
+        {props.posts.map(el => <Blog {...el} key={el._id}/>)}
+        </div>
+
 </>
     )
 }

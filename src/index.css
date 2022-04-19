@@ -9,15 +9,16 @@ html {
 body {
 	font-family: "Nunito", "Arial", "Helvetica", sans-serif;
     background-image: url('./images/wesley-tingey-AZtMXheXnWc-unsplash.jpg');
-	background-size: cover;
-	background-repeat: repeat-y;
+	background-size: contain;
+	background-repeat: repeat;
 }
 
 .container {
-	padding: 20px calc(50% - 500px);
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 40px;
+	padding: 20px calc(50% - 550px);
+	display: flex;
+	flex-wrap: wrap;
+	
+	gap: 20px;
 }
 
 .pageTitle {
