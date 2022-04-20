@@ -24,14 +24,18 @@ class Api {
         }).then(responseHandler);
     }
 
-    // getReviews(id) {
-    //     return fetch(`${this.path}/products/review/${id}`, {
-    //         headers: {
-    //             authorization: `Bearer ${this.token}`
-    //         }
-    //     }).then(responseHandler);
-    // }
-
+    signIn(email, password) {
+        return fetch(`${this.path}/signin`, {
+            method: "post",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+              })
+        }).then(responseHandler);
+    }
 }
 
 const config = {

@@ -12,32 +12,34 @@ body {
 	background-size: contain;
 	background-repeat: repeat;
 }
-
+main {
+	padding: 20px 30px;
+}
+ 
 .container {
-	padding: 20px calc(50% - 550px);
 	display: flex;
 	flex-wrap: wrap;
-	
 	gap: 20px;
 }
 
-.pageTitle {
+/* .pageTitle {
 	font-size: 30px;
 	color:white;
 	padding: 10px;
 	background-color:rgba(49, 136, 155, 0.708);
-}
+} */
 
 .wellcome {
 	padding: 20px;
 	display: flex;
 	justify-content: space-between;
 }
-.greeting {
+.greeting, .createHeader, .signUpTitle, .signInTitle {
 	font-size: 25px;
 	font-weight: 700;
 	color:rgba(4, 38, 46, 0.906);
 	text-shadow: rgb(244, 247, 249) 1px 0 7px;
+	
 }
 
 .btn-create {
@@ -48,3 +50,53 @@ body {
 	color:rgba(4, 38, 46, 0.906);
 	box-shadow: rgb(244, 247, 249) 1px 0 7px;
 }
+
+.createForm  {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	background-image: url("images/sheet.png");
+    width: 800px;  
+    height: 700px; 
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding: 90px;
+	padding-left: 130px;
+	
+}
+
+.createForm>input, .createForm>textarea, .signUpForm>input, .modal__container>input {
+	border: none;
+	border-radius: 10px;
+	box-shadow: rgba(49, 136, 155, 0.708) 1px 0 7px;
+	padding: 5px;
+
+}
+
+.signUpForm {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding: 25px 10px;
+	background-color: rgba(254, 254, 254, 0.66);
+	box-shadow: 0 1px 3px white;
+	border-radius: 10px;
+	margin: 10px 0;
+}
+
+.createForm>button, .signUpForm>button, .modal__container>button {
+	border: none;
+	border-radius: 10px;
+	box-shadow: rgba(49, 136, 155, 0.708) 1px 0 7px;
+	background-color: rgba(49, 136, 155, 0.708) 1px 0 7px;
+	cursor: pointer;
+	padding: 5px;
+	margin-top: 10px;
+}
+ 
+.signUpLink {
+    color: rgba(4, 38, 46, 0.906);
+	font-size: 18px;
+	font-weight: 600;
+	margin-top: 10px;
+  }

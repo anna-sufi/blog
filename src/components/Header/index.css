@@ -7,8 +7,11 @@
 .header {
     background-color: rgba(255, 255, 255, 0.728);
     margin: 0px;
-    
     padding: 10px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 3px white;
 }
 
 .title {
@@ -16,4 +19,25 @@
     color: rgb(49, 135, 155);
     font-weight: 800;
     padding: 0 10px;
+  }
+
+  .headerRight {
+      margin: 0 10px;
+      font-size: 20px;
+  }
+
+  .headerUser {
+    color: rgb(49, 135, 155);
+    font-weight: 800;
+    margin: 0 5px;
+  }
+
+  .signInLink {
+    color: rgba(4, 38, 46, 0.906);
+  }
+
+  .signOut {
+    color: rgba(4, 38, 46, 0.906);
+    text-decoration: underline;
+    cursor: pointer;
   }
