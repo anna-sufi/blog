@@ -34,6 +34,8 @@
 
   .signInLink {
     color: rgba(4, 38, 46, 0.906);
+    text-decoration: underline;
+    cursor: pointer;
   }
 
   .signOut {

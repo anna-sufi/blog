@@ -8,7 +8,8 @@ const Page = (props) => {
        
         <div className="wellcome">
             <div className="greeting">Wellcome here!</div>
-            <Link to="/create"><button className="btn-create">Create post</button></Link>
+            {props.authorized ?  <Link to="/create"><button className="btn-create">Create post</button></Link> :
+           <span className="infoToCreate">Sign in to create new post</span>}
             </div>
         <div className="container" >
         {props.posts.map(el => <Post {...el} key={el._id}/>)}

@@ -36,6 +36,22 @@ class Api {
               })
         }).then(responseHandler);
     }
+
+    sendPost(title, text, image, tags) {
+        return fetch(`${this.path}/posts`, {
+            method: "post",
+            headers: {
+                authorization: `Bearer ${this.token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                title: title,
+                text: text,
+                image: image,
+                tags: tags
+              })
+        }).then(responseHandler);
+    }
 }
 
 const config = {

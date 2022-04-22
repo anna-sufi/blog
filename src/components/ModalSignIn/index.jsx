@@ -1,38 +1,37 @@
-import React, {useState, useEffect} from "react";
-import "./index.css";
-import {Routes, Route, Link} from "react-router-dom";
+import React, {useState} from "react";
+import './index.css';
 import api from "../../api";
 
 const ModalSignIn = (props) => {
-   const [email, setEmail] = useState("");
-   const [password, setPassword] = useState("");
+   
+    const [password, setPassword] = useState("");  
 
-   const signInHandler = () => {
-    api.signIn(email, password).then(ans => {
-        console.log(ans);
-        props.setAuthorized(true);
-        props.changeActive(!props.active);
-        props.setUser(ans.data && ans.data.name);
-    })}
+    const signInHandler = () => {
+       api.signIn(props.email, password).then(ans => {
+           console.log(ans);
+           props.setAuthorized(true);
+           props.changeActive(!props.active);
+           props.setUser(ans.data && ans.data.name);
+        } )}
+
+    const signUpHandler = () => {
+        props.openSignUp(true);
+        props.changeActive(false);
+        document.getElementById('signIn_inp_email').value="";
+        document.getElementById('signIn_inp_passw').value="";
+    }
 
     return (
         <div className={props.active ? "modal active" : "modal"}>
             <div className="modal__container">
-                <Routes>
-                    <Route path="/signin" element={
-                        <>
-                        <h2 className="signInTitle">Sign in</h2>
-                        <input placeholder="email" onInput={e => setEmail(e.target.value)}></input>
-                        <input placeholder="password" onInput={e => setPassword(e.target.value)}></input>
-                        <button onClick={signInHandler}>Sign in</button>
-                        <Link className="signUpLink" to="/signup" onClick={e => props.changeActive(!props.active)}>Sign up</Link>
-                        </> }
-                    />         
-                </Routes>
+                    <h2 className="signInTitle">Sign in</h2>
+                    <input id="signIn_inp_email" placeholder="email" onInput={e => props.setEmail(e.target.value)}></input>
+                    <input id="signIn_inp_passw" placeholder="password" onInput={e => setPassword(e.target.value)}></input>
+                    <button onClick={signInHandler}>Sign in</button>
+                    <span className="signUpLink" onClick={signUpHandler}>Sign up</span>    
                 <div className="modal__close" onClick={e => props.changeActive(!props.active)}>X</div>
             </div>
         </div>
-    )
-}
+    )}
 
 export default ModalSignIn;

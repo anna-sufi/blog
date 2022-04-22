@@ -1,19 +1,42 @@
-import React from "react";
+import React, {useState} from "react";
+import {useNavigate } from "react-router-dom";
+import api from "../api";
 
 const CreatePost = () => {
+    const navigate = useNavigate();
+    const [newPostTitle, setNewPostTitle] = useState("");
+    const [newPostText, setNewPostText] = useState("");
+    const [newPostImage, setNewPostImage] = useState("");
+    const [newPostTags, setNewPostTags] = useState([]);
+   
+    
+    const sendPostHandler = (e) => {
+        e.preventDefault();
+        console.log(newPostTitle);
+        console.log(newPostText);
+        console.log(newPostImage);
+        console.log(newPostTags);
+
+        api.sendPost(newPostTitle, newPostText, newPostImage, newPostTags).then(ans => {
+            console.log(ans);
+             });
+        navigate("/");
+
+    }
+
     return (
         <>
         <div className="createHeader">New Post</div>
         <form className="createForm">
             <label >Title</label>
-            <textarea placeholder="Enter the post title"></textarea>
+            <textarea onInput={e => setNewPostTitle(e.target.value)} placeholder="Enter the post title"></textarea>
             <label rows="2">Text</label>
-            <textarea rows="6" placeholder="Enter the text"></textarea>
+            <textarea onInput={e => setNewPostText(e.target.value)} rows="6" placeholder="Enter the text"></textarea>
             <label>Image</label>
-            <input type="text" id="createImg" placeholder="Enter the Image URL"></input>
+            <input type="text" id="createImg" onInput={e => setNewPostImage(e.target.value)} placeholder="Enter the Image URL"></input>
             <label >Tags</label>
-            <input placeholder="Enter the tags"></input>
-            <button>Public post</button>
+            <input  onInput={e => setNewPostTags(e.target.value.split(',').map(el => el.trim()))} placeholder="Enter the tags"></input>
+            <button onClick={sendPostHandler}>Public post</button>
        
         </form>
         </>
