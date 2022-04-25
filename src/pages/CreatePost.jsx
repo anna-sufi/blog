@@ -2,26 +2,25 @@ import React, {useState} from "react";
 import {useNavigate } from "react-router-dom";
 import api from "../api";
 
-const CreatePost = () => {
+const CreatePost = (props) => {
     const navigate = useNavigate();
     const [newPostTitle, setNewPostTitle] = useState("");
     const [newPostText, setNewPostText] = useState("");
     const [newPostImage, setNewPostImage] = useState("");
     const [newPostTags, setNewPostTags] = useState([]);
    
-    
     const sendPostHandler = (e) => {
         e.preventDefault();
         console.log(newPostTitle);
-        console.log(newPostText);
-        console.log(newPostImage);
-        console.log(newPostTags);
-
         api.sendPost(newPostTitle, newPostText, newPostImage, newPostTags).then(ans => {
             console.log(ans);
-             });
+            api.getPosts().then(ans => {
+                props.setPosts(ans);
+                props.setData(ans);
+            })
+        });
+       
         navigate("/");
-
     }
 
     return (

@@ -30,16 +30,45 @@ main {
 } */
 
 .wellcome {
-	padding: 20px;
+	padding: 20px 10px;
+	/* padding: 20px calc(50% - 500px); */
 	display: flex;
 	justify-content: space-between;
 }
-.greeting, .createHeader, .signUpTitle, .signInTitle {
+.greeting, .createHeader, .signUpTitle, .signInTitle, .pagin_text {
 	font-size: 25px;
 	font-weight: 700;
 	color:rgba(4, 38, 46, 0.906);
 	text-shadow: rgb(244, 247, 249) 1px 0 7px;
 	
+}
+
+.pagin_text {
+	margin: 5px;
+	font-size: 20px;
+}
+
+.pagination {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.page {
+	border-radius: 7px;
+	box-shadow: rgb(244, 247, 249) 1px 0 7px;
+	border: none;
+	margin-right: 8px;
+	margin-top: 5px;
+	padding: 5px 7px;
+	font-weight: 600;
+}
+
+.pag_active {
+
+	background-color: rgba(43, 126, 146, 0.577);
+	box-shadow: rgba(59, 172, 201, 0.714);
 }
 
 .btn-create {
@@ -84,7 +113,7 @@ main {
 	margin: 10px 0;
 }
 
-.createForm>button, .signUpForm>button, .modal__container>button {
+.createForm>button, .signUpForm>button, .modal__container>button, .editButtons>button {
 	border: none;
 	border-radius: 10px;
 	box-shadow: rgba(49, 136, 155, 0.708) 1px 0 7px;
@@ -112,7 +141,7 @@ main {
 
   .editForm {
 	  width: 800px;
-	  height: 800px;
+	  height: 700px;
 	  display: flex;
 	  flex-direction: column;
 	  gap: 20px;
@@ -151,7 +180,7 @@ main {
 .editTitle {
 	font-size: 25px;
 	font-weight: 700;
-	color: rgb(43, 135, 156);
+	color: rgb(19, 110, 130);
 	width: 100%;
 	text-align: center;
 }
@@ -166,4 +195,48 @@ main {
 	border: none;
 	border-radius: 20px;
 	padding: 10px;
+}
+
+.editButtons {
+	display: flex;
+	margin: 10px 0 20px 0;
+	justify-content: center;
+	gap: 20px;
+}
+
+.editButtons>button {
+	width: 100px;
+	box-shadow: rgb(244, 247, 249) 1px 0 10px;
+}
+.editBan, .editLikeBan {
+    padding: 10px;
+    box-sizing: border-box;
+	font-size: 20px;
+	font-weight: 600;
+	color: rgb(10, 57, 68);
+	margin-top: 10px;
+	text-shadow: rgb(255, 255, 255) 1px 0 7px;
+	
+}
+
+.editLikeBan {
+    color: rgb(167, 35, 35);
+	margin-left: 10px;
+}
+
+.fa-solid.fa-heart {
+	color: red;
+}
+
+.editLike {
+	display: flex;
+	padding: 5px 15px;
+	margin: 0;
+	gap: 10px;
+	font-size: 17px;
+	background-color: rgba(255, 255, 255, 0.427);
+    display: inline-block;
+    border-radius: 10px;
+	box-shadow: rgb(244, 247, 249) 1px 0 10px;
+  
 }

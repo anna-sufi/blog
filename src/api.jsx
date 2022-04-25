@@ -24,6 +24,35 @@ class Api {
         }).then(responseHandler);
     }
 
+    
+
+    delPost(id) {
+        return fetch(`${this.path}/posts/${id}`, {
+            method: "delete",
+            headers: {
+                authorization: `Bearer ${this.token}`
+            }
+        }).then(responseHandler);
+    }
+
+    putLike(postId) {
+        return fetch(`${this.path}/posts/likes/${postId}`, {
+            method: "put",            
+            headers: {
+                authorization: `Bearer ${this.token}`
+            }
+        }).then(responseHandler);
+    }
+
+    offLike(postId) {
+        return fetch(`${this.path}/posts/likes/${postId}`, {
+            method: "delete",            
+            headers: {
+                authorization: `Bearer ${this.token}`
+            }
+        }).then(responseHandler);
+    }
+
     signIn(email, password) {
         return fetch(`${this.path}/signin`, {
             method: "post",
@@ -56,7 +85,7 @@ class Api {
 
 const config = {
     path: 'https://api.react-learning.ru',
-    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjU1YTVmNTk0N2M3MjkyZDhjMjA0ZmEiLCJpYXQiOjE2NDk4NTU0NjMsImV4cCI6MTY4MTM5MTQ2M30.iWxNC587JOB0JGHpKXCDpJB8WsD2WVzJRxdcos1FV4w'
+    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjU1YTVmNTk0N2M3MjkyZDhjMjA0ZmEiLCJpYXQiOjE2NTA2OTAwNzcsImV4cCI6MTY4MjIyNjA3N30.457WDX1bH8a5JcpKXRglQjL-WH1akJoQWeuFRpFtbdw'
 }
 
 const api = new Api(config);
