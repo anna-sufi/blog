@@ -14,17 +14,13 @@ const CreatePost = (props) => {
         console.log(newPostTitle);
         api.sendPost(newPostTitle, newPostText, newPostImage, newPostTags).then(ans => {
             console.log(ans);
-            api.getPosts().then(ans => {
-                props.setPosts(ans);
-                props.setData(ans);
-            })
+            props.setModifyPosts(!props.modifyPosts); 
         });
-       
         navigate("/");
     }
 
     return (
-        <>
+        <div className="wrapper">
         <div className="createHeader">New Post</div>
         <form className="createForm">
             <label >Title</label>
@@ -38,7 +34,7 @@ const CreatePost = (props) => {
             <button onClick={sendPostHandler}>Public post</button>
        
         </form>
-        </>
+        </div>
 
     )
 }

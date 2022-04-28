@@ -13,6 +13,8 @@ body {
 	background-repeat: repeat;
 }
 main {
+	display: flex;
+	justify-content: center;
 	padding: 20px 30px;
 }
  
@@ -20,6 +22,11 @@ main {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 20px;
+}
+.editComments {
+display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 15px;
 }
 
 /* .pageTitle {
@@ -39,8 +46,7 @@ main {
 	font-size: 25px;
 	font-weight: 700;
 	color:rgba(4, 38, 46, 0.906);
-	text-shadow: rgb(244, 247, 249) 1px 0 7px;
-	
+	text-shadow: rgb(244, 247, 249) 1px 0 7px;	
 }
 
 .pagin_text {
@@ -66,7 +72,6 @@ main {
 }
 
 .pag_active {
-
 	background-color: rgba(43, 126, 146, 0.577);
 	box-shadow: rgba(59, 172, 201, 0.714);
 }
@@ -91,15 +96,17 @@ main {
     background-size: contain;
     padding: 90px;
 	padding-left: 130px;
-	
 }
 
-.createForm>input, .createForm>textarea, .signUpForm>input, .modal__container>input {
+.createForm>input, .createForm>textarea, .signUpForm>input, .modal__container>input, .profileText>input {
 	border: none;
 	border-radius: 10px;
 	box-shadow: rgba(49, 136, 155, 0.708) 1px 0 7px;
 	padding: 5px;
+}
 
+.profileText>input {
+width: 300px;
 }
 
 .signUpForm {
@@ -113,7 +120,7 @@ main {
 	margin: 10px 0;
 }
 
-.createForm>button, .signUpForm>button, .modal__container>button, .editButtons>button {
+.createForm>button, .signUpForm>button, .modal__container>button, .editButtons>button, .profileButtons>button, .editAddCommentBtn {
 	border: none;
 	border-radius: 10px;
 	box-shadow: rgba(49, 136, 155, 0.708) 1px 0 7px;
@@ -121,6 +128,23 @@ main {
 	cursor: pointer;
 	padding: 5px;
 	margin-top: 10px;
+}
+
+ .editAddCommentBtn {
+	 margin: 0;
+	 padding: 6px 13px;
+	 box-shadow: rgba(234, 239, 240, 0.708) 1px 0 7px;
+	background-color: rgba(49, 136, 155, 0.708) 1px 0 7px;
+ }
+
+ .profileButtons>button {
+	width: 100px;
+	box-shadow: rgb(35, 119, 134) 1px 0 10px;
+}
+
+.editButtons>button {
+	width: 100px;
+	box-shadow: rgba(234, 239, 240, 0.708) 1px 0 7px;
 }
  
 .signUpLink {
@@ -141,17 +165,42 @@ main {
 
   .editForm {
 	  width: 800px;
-	  height: 700px;
+	  /* height: 800px; */
 	  display: flex;
 	  flex-direction: column;
 	  gap: 20px;
 	  background-color: rgba(255, 255, 255, 0.858);
     padding: 20px;
     box-sizing: border-box;
-    /* width: 400px; */
     border-radius: 20px;
 	box-shadow: rgb(244, 247, 249) 1px 0 10px;
   }
+
+  .profileForm {
+	width: 600px;
+	height: 300px;
+	display: flex;	
+	flex-direction: column;
+	gap: 20px;
+	background-color: rgba(255, 255, 255, 0.858);
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  box-shadow: rgb(244, 247, 249) 1px 0 10px;
+  }
+
+  .profileInfo {
+	display: flex;	
+	gap: 20px;
+}
+
+  .profileText {
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: center;
+	  gap: 20px;
+  }
+
   .editAuthorInfo {
 	display: flex;
 	flex-direction: column;
@@ -159,22 +208,42 @@ main {
 	justify-content: center;
   }
 
-  .editAuthor {
+  .editAuthor, .likesWrapper {
 	display: flex;
 	gap: 20px;
+	align-items: center;
+  }
+
+  .likesWrapper {
+	  margin: 10px 0;
+  }
+
+  .total_editComments {
+	margin: 20px 0;
+	font-size: 20px;
+	font-weight: 800;
+	color: rgb(10, 57, 68);
+	text-shadow: rgb(255, 255, 255) 1px 0 7px;
   }
 
   .editAvatar {
 	  width: 100px;
 	  border-radius: 35%;
+	  object-fit: cover;
+  }
+
+  .profileAvatar {
+      width: 200px;
+	  height: 200px;
+	  border-radius: 30px;
+	  object-fit: cover;
   }
 
   .editAuthorName {
 	  font-size: 20px;
 	  font-weight: 700;
 	  color:rgba(12, 50, 58, 0.975);
-	  text-decoration: underline;
-	  cursor: pointer;
+	  
   }
 
 .editTitle {
@@ -187,8 +256,16 @@ main {
 
 .editImage {
 	height: 300px;
+	width: 500px;
 	border-radius: 20px;
-	object-fit: contain;
+	object-fit: cover;
+	margin: 0 calc(50% - 380px);
+}
+
+.editImageWrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .editText {
@@ -197,26 +274,22 @@ main {
 	padding: 10px;
 }
 
-.editButtons {
+.editButtons, .profileButtons {
 	display: flex;
 	margin: 10px 0 20px 0;
 	justify-content: center;
 	gap: 20px;
 }
 
-.editButtons>button {
-	width: 100px;
-	box-shadow: rgb(244, 247, 249) 1px 0 10px;
-}
+
 .editBan, .editLikeBan {
     padding: 10px;
     box-sizing: border-box;
 	font-size: 20px;
 	font-weight: 600;
 	color: rgb(10, 57, 68);
-	margin-top: 10px;
+	margin: 10px 0;
 	text-shadow: rgb(255, 255, 255) 1px 0 7px;
-	
 }
 
 .editLikeBan {
@@ -234,9 +307,44 @@ main {
 	margin: 0;
 	gap: 10px;
 	font-size: 17px;
-	background-color: rgba(255, 255, 255, 0.427);
+	background-color: rgba(255, 255, 255, 0.666);
     display: inline-block;
     border-radius: 10px;
 	box-shadow: rgb(244, 247, 249) 1px 0 10px;
-  
+}
+
+.postTag {
+  background-color: rgba(29, 171, 203, 0.288);
+  padding: 0 5px;
+  margin: 0 5px;
+  border-radius: 5px;
+}
+
+.writeComment {
+	width: 500px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+	margin: 10px calc(50% - 400px);
+	gap: 20px;
+	border-radius: 20px;
+	background-color: rgba(255, 255, 255, 0.564);;
+}
+
+.writeComment>textarea {
+	border: none;
+	border-radius: 20px;
+	padding: 20px;
+	width: 100%;
+}
+
+.writeComment>button {
+	border: none;
+	border-radius: 20px;
+	padding: 8px;
+	box-shadow: rgba(24, 119, 138, 0.884) 1px 0 7px;
+	cursor: pointer;
+	width: 120px;
 }

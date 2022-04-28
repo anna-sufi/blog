@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Main from "./pages/Main";
 import EditPost from "./pages/EditPost";
 import CreatePost from "./pages/CreatePost";
+import Profile from "./pages/Profile";
 import {Routes, Route} from "react-router-dom";
 import api from "./api.jsx";
 import ModalSignIn from "./components/ModalSignIn";
@@ -10,13 +11,14 @@ import ModalSignUp from "./components/ModalSignUp";
 
 
 function App() {
-	
 	const [data, setData] = useState([]);
 	const [posts, setPosts] = useState(data);
 	const [user, setUser] = useState("guest");
 	const [userId, setUserId] = useState("");
 	const [modalActivity, setModalActivity] = useState(false);
+	
 	const [signUpActivity, setSignUpActivity] = useState(false);
+	const [modifyPosts, setModifyPosts] = useState(false);
     const [authorized, setAuthorized] = useState(false);
 	const [email, setEmail] = useState("");	
 	const[searchText,setSearch] = useState("");
@@ -25,17 +27,20 @@ function App() {
 	const appHandler = val => {
 		console.log("app", val);
         setSearch(val);
-		const newPosts = data.filter(el => el.title.toLowerCase().includes(val.toLowerCase()));
-		setPosts(newPosts);
-		setSearchCnt(newPosts.length);
+		// const newPosts = data.filter(el => el.title.toLowerCase().includes(searchText.toLowerCase()));
+		// setPosts(newPosts);
+		// setSearchCnt(newPosts.length);
 	}
 
     useEffect(() => {
 	  api.getPosts().then(ans => {
 		setPosts(ans);
 		setData(ans);
+		if (searchText) {
+		setPosts(data.filter(el => el.title.toLowerCase().includes(searchText.toLowerCase())));
+		setSearchCnt(posts.length);}
 		console.log(ans);
-	})}, [])
+	})}, [searchText, modifyPosts])
    
 	return (
         <>
@@ -56,9 +61,15 @@ function App() {
 								searchText={searchText} cnt={cnt} />}/>
 			 <Route path="/edit/:id" element={<EditPost 
 			                         authorized={authorized} userId={userId}
-									 email={email} setPosts={setPosts}/>}/>
+									 email={email} 
+									 setModifyPosts={setModifyPosts} modifyPosts={modifyPosts}/>}
+									/>
 			 <Route path="/create" element={<CreatePost setPosts={setPosts}
-			                                 setData={setData}/>}/>
+			                                 setData={setData} setModifyPosts={setModifyPosts}
+											 modifyPosts={modifyPosts}/>}/>
+			<Route path="/profile" element={<Profile setUser={setUser} 
+			                                setPosts={setPosts} setData={setData}
+											setModifyPosts={setModifyPosts} modifyPosts={modifyPosts}/>}/>
 		  </Routes>
 		</main>
 
@@ -74,6 +85,8 @@ function App() {
 		   signUpActive={signUpActivity} 
 		   changeSignUpActive={setSignUpActivity}
 		/>
+
+		
   
       </>
     )

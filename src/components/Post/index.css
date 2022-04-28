@@ -5,7 +5,6 @@
     background-repeat: no-repeat;
     background-size: contain;
     padding: 30px 15px 10px 40px;
-
 }
 
 .post_content {
@@ -23,7 +22,7 @@
   font-size: 17px;
   font-weight: 700;
   color: rgb(49, 135, 155);
- width: 180px;
+  width: 200px;
 }
 
 .linkEdit {
@@ -60,6 +59,7 @@
   border-radius: 20%;
   margin-right: 10px;
   margin-bottom: 10px;
+  object-fit: cover;
 }
 
 .text {
@@ -71,4 +71,31 @@
 
 .tags {
   margin-bottom: 10px;
+}
+
+.likesComments {
+  margin: 5px 0;
+  font-size: 15px;
+}
+
+.datesLikes {
+  display: flex;
+  justify-content: space-between;
+}
+
+.commentsLikes, .fa-solid.fa-heart.post {
+  color: rgb(49, 135, 155);
+}
+
+.commentsLikes {
+  display: flex;
+  justify-content: space-between;
+  width: 90px;
+}
+
+.createTag {
+  background-color: rgba(29, 171, 203, 0.288);
+  padding: 0 5px;
+  margin: 0 5px;
+  border-radius: 5px;
 }

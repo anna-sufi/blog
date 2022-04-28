@@ -1,10 +1,8 @@
 import React from "react";
 import "./index.css";
 // import { faPen } from '@fortawesome/free-solid-svg-icons';
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import SearchTitle from "../SearchTitle";
-
-
 
 const Header = (props) => {
 
@@ -29,11 +27,15 @@ const Header = (props) => {
       <div className="header">
           <div className="headerLeft">
               <i className="fa-solid fa-pen-clip"></i>
-              <Link to="/" className="title">POSTS BOARD </Link>
+              <Link to="/" className="title" >POSTS BOARD </Link>
            </div>
            <SearchTitle searchText={props.searchText} searchHandler={searchHandler}/>
-           <div className="headerRight"> <span>Hello,</span>
-              <span className="headerUser">{props.user}</span><span>! </span>
+           <div className="headerRight"> 
+           <span>Hello,</span>
+           {props.authorized ? <Link to="/profile"><span className="headerUser" >{props.user}</span></Link> : 
+           <span className="headerUser">{props.user}</span>} 
+           <span>! </span> 
+             
               
               {props.authorized ? 
               <span className="signOut" onClick={signOutHandler}>Sign out</span> 

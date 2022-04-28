@@ -16,6 +16,41 @@ class Api {
         }).then(responseHandler);
     }
 
+    getProfile() {
+        return fetch(`${this.path}/users/me`, {
+            headers: {
+                authorization: `Bearer ${this.token}`
+            }
+        }).then(responseHandler);
+    }
+
+    saveProfileInfo(name, about) {
+        return fetch(`${this.path}/users/me`, {
+            method: "PATCH",
+            headers: {
+                authorization: `Bearer ${this.token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: name,
+                about: about
+              })
+        }).then(responseHandler);
+    }
+
+    saveProfileAvatar(avatar) {
+        return fetch(`${this.path}/users/me/avatar`, {
+            method: "PATCH",
+            headers: {
+                authorization: `Bearer ${this.token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                avatar: avatar
+              })
+        }).then(responseHandler);
+    }
+
     getPost(id) {
         return fetch(`${this.path}/posts/${id}`, {
             headers: {
@@ -24,7 +59,38 @@ class Api {
         }).then(responseHandler);
     }
 
-    
+    getPostComments(id) {
+        return fetch(`${this.path}/posts//comments/${id}`, {
+            
+            headers: {
+                authorization: `Bearer ${this.token}`
+            }
+        }).then(responseHandler);
+    }
+
+    sendComment(id, text) {
+        return fetch(`${this.path}/posts//comments/${id}`, {
+            method: "post",
+            headers: {
+                authorization: `Bearer ${this.token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                
+                text: text
+                
+              })
+        }).then(responseHandler);
+    }
+
+    delComment(id, commId) {
+        return fetch(`${this.path}/posts/comments/${id}/${commId}`, {
+            method: "delete",
+            headers: {
+                authorization: `Bearer ${this.token}`
+            }
+        }).then(responseHandler);
+    }
 
     delPost(id) {
         return fetch(`${this.path}/posts/${id}`, {
@@ -66,6 +132,7 @@ class Api {
         }).then(responseHandler);
     }
 
+
     sendPost(title, text, image, tags) {
         return fetch(`${this.path}/posts`, {
             method: "post",
@@ -81,7 +148,26 @@ class Api {
               })
         }).then(responseHandler);
     }
+
+    savePost(id, image, tags, title, text) {
+        return fetch(`${this.path}/posts/${id}`, {
+            method: "PATCH",
+            headers: {
+                authorization: `Bearer ${this.token}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                image: image,
+                tags: tags,
+                title: title,
+                text: text
+              })
+        }).then(responseHandler);
+    }
+
 }
+
+
 
 const config = {
     path: 'https://api.react-learning.ru',

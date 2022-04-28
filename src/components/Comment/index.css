@@ -1,0 +1,56 @@
+.comment {
+    width: 250px;
+	  /* height: 800px; */
+	  display: flex;
+	  flex-direction: column;
+	  gap: 20px;
+	  background-color: rgba(255, 255, 255, 0.858);
+     padding: 20px;
+     box-sizing: border-box;
+     border: 1px solid #2c9bb4ad;
+     border-radius: 20px;
+	 box-shadow: rgb(9, 53, 61) 2px 0 10px;
+}
+
+.commentAuthor {
+    display: flex;
+	gap: 10px;
+	align-items: flex-start;
+}
+
+.commentAvatar {
+    width: 70px;
+	  border-radius: 35%;
+	  object-fit: cover;
+}
+
+.commentAuthorInfo {
+    display: flex;
+	flex-direction: column;
+	gap: 5px;
+	justify-content: center;
+}
+
+.commentAuthorName {
+    font-size: 16px;
+    font-weight: 700;
+    color:rgba(12, 50, 58, 0.975);
+}
+
+.commentAuthorAbout, .commentUpdated {
+    font-size: 15px;
+}
+
+.deleteComment {
+	border: solid 2px rgba(36, 131, 141, 0.81);
+	background-color: rgba(25, 156, 170, 0.495);
+	font-weight: 700;
+	width: 27px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 7px;
+	color: rgba(14, 58, 63, 0.783);
+	cursor: pointer;
+
+}

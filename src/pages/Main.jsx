@@ -1,6 +1,7 @@
 import React from "react";
 import Post from "../components/Post";
 import { Link } from "react-router-dom";
+
 import usePagination from "../hooks/usePagination.jsx";
 import SearchAnswer from "../components/SearchAnswer";
 
@@ -19,7 +20,7 @@ const Page = (props) => {
       });
 
     return (
-        <>
+        <div className="wrapper">
        
         <div className="wellcome">
             <div className="greeting">Wellcome here!</div>
@@ -56,7 +57,7 @@ const Page = (props) => {
 
        
 
-</>
+</div>
     )
 }
 

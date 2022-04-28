@@ -16,7 +16,7 @@ const SearchTitle = ({searchText, searchHandler}) => {
             placeholder="title search" 
             className="search__input"
             value={text}
-            onInput={handleInput}
+            onChange={handleInput}
             />
             <button className="search__button">
                 {text === "" ? <img src={srch}/> : <img src={close}/> }
