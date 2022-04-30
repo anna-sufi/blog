@@ -1,9 +1,9 @@
 import React, {useState} from "react";
-import {useNavigate } from "react-router-dom";
+
 import api from "../api";
 
 const CreatePost = (props) => {
-    const navigate = useNavigate();
+
     const [newPostTitle, setNewPostTitle] = useState("");
     const [newPostText, setNewPostText] = useState("");
     const [newPostImage, setNewPostImage] = useState("");
@@ -11,12 +11,17 @@ const CreatePost = (props) => {
    
     const sendPostHandler = (e) => {
         e.preventDefault();
-        console.log(newPostTitle);
-        api.sendPost(newPostTitle, newPostText, newPostImage, newPostTags).then(ans => {
-            console.log(ans);
-            props.setModifyPosts(!props.modifyPosts); 
-        });
-        navigate("/");
+        if (newPostTitle && newPostText && newPostImage) {
+          api.sendPost(newPostTitle, newPostText, newPostImage, newPostTags).then(ans => {
+             console.log(ans);
+             props.setModifyPosts(!props.modifyPosts); 
+            props.setCreateModalActivity(true);
+           });
+           props.setModifyPosts(!props.modifyPosts);
+        } else {
+            alert('Enter all data (tags are optional');
+            
+        }
     }
 
     return (
@@ -30,8 +35,8 @@ const CreatePost = (props) => {
             <label>Image</label>
             <input type="text" id="createImg" onInput={e => setNewPostImage(e.target.value)} placeholder="Enter the Image URL"></input>
             <label >Tags</label>
-            <input  onInput={e => setNewPostTags(e.target.value.split(',').map(el => el.trim()))} placeholder="Enter the tags"></input>
-            <button onClick={sendPostHandler}>Public post</button>
+            <input  onInput={e => setNewPostTags(e.target.value.split(',').map(el => el.trim()))} placeholder="Enter the tags, comma separated. (optional)"></input>
+            <button onClick={sendPostHandler} >Public post</button>
        
         </form>
         </div>

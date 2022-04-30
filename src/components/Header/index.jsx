@@ -27,7 +27,7 @@ const Header = (props) => {
       <div className="header">
           <div className="headerLeft">
               <i className="fa-solid fa-pen-clip"></i>
-              <Link to="/" className="title" >POSTS BOARD </Link>
+              <Link to="/" className="title" onClick={()=> {props.setModifyPosts(!props.modifyPosts)}}>POSTS BOARD </Link>
            </div>
            <SearchTitle searchText={props.searchText} searchHandler={searchHandler}/>
            <div className="headerRight"> 

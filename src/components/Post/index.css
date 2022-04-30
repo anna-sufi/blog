@@ -51,6 +51,7 @@
 
 .postText {
   display: flex;
+
 }
 
 .postPhoto {
@@ -64,6 +65,8 @@
 
 .text {
   font-size: 13px;
+  width: 200px;
+  word-wrap: break-word;
 }
 .dates {
   color: rgb(49, 135, 155);

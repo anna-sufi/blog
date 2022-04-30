@@ -1,6 +1,7 @@
 const responseHandler = (res) => {
+    // console.log(res);
     return res.ok ? res.json() : Promise.reject(`Ошибка ${res.status}`)
-}
+    }
 
 class Api {
     constructor({path, token, id}) {
@@ -149,6 +150,19 @@ class Api {
         }).then(responseHandler);
     }
 
+    signUp(email, password) {
+        return fetch(`${this.path}/signup`, {
+            method: "post",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+              })
+        }).then(responseHandler);
+    }
+
     savePost(id, image, tags, title, text) {
         return fetch(`${this.path}/posts/${id}`, {
             method: "PATCH",
@@ -171,7 +185,7 @@ class Api {
 
 const config = {
     path: 'https://api.react-learning.ru',
-    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjU1YTVmNTk0N2M3MjkyZDhjMjA0ZmEiLCJpYXQiOjE2NTA2OTAwNzcsImV4cCI6MTY4MjIyNjA3N30.457WDX1bH8a5JcpKXRglQjL-WH1akJoQWeuFRpFtbdw'
+    token: localStorage.getItem("token")
 }
 
 const api = new Api(config);

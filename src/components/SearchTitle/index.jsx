@@ -6,6 +6,7 @@ import  srch from "./img/ic-search.svg";
 const SearchTitle = ({searchText, searchHandler}) => {
     const [text, setText] =useState(searchText);
     const handleInput = e => {
+        e.preventDefault();
         setText(e.target.value); //меняем переменную text на введенное значение
         searchHandler(e.target.value); //передаем в app введенное значение
            }
@@ -18,7 +19,7 @@ const SearchTitle = ({searchText, searchHandler}) => {
             value={text}
             onChange={handleInput}
             />
-            <button className="search__button">
+            <button className="search__button" onClick={()=>{e.preventDefault();}}>
                 {text === "" ? <img src={srch}/> : <img src={close}/> }
                 </button>
         </form>

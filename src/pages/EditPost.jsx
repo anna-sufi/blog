@@ -5,83 +5,93 @@ import api from '../api';
 import Comment from '../components/Comment';
 import shortid from "../../node_modules/shortid";
 
+
 const EditPost = (props) => {
     const params = useParams();
-    const id = params.id;
-    const [post, setPost] = useState({});
-    const [comments, setComments] = useState([]);
-    const [youLiked, setYouLiked] = useState(false);
-    const [editMode, setEditMode] = useState(false);
-    const [edited, setEdited] = useState(false);
-    const [canSave, setCanSave] = useState(false);
-    const [commentingMode, setCommentingMode] = useState();
-    const [sendMode, setSendMode] = useState(false);
+    const id = params.id; 
+    const [post, setPost] = useState({}); // пост
+    const [comments, setComments] = useState([]);// массив с комментами
+    const [youLiked, setYouLiked] = useState(false); //наличие моего лайка
+    const [editMode, setEditMode] = useState(false); // активация кнопок правки
+    const [edited, setEdited] = useState(false); //слушатель изменений в этом посте 
+    const [canSave, setCanSave] = useState(false); // активация кнопки 'Save'
+    const [commentingMode, setCommentingMode] = useState();//открытие/закрытие окна комментирования
+    const [sendMode, setSendMode] = useState(false);//слушатель публикации/удаления коммента 
     const navigate = useNavigate();
 
+
+    //опубликовать коментарий (на кнопку 'Public')
     const sendNewComment = () => {
         let newComment = document.querySelector('#newComment').value;
         api.sendComment(id, newComment).then(ans => 
-            console.log(ans)
-            )
-        setSendMode(!sendMode);
-        setCommentingMode(false)
-    }
-
+            {console.log(ans);   
+              setSendMode(!sendMode);// обновить комменты под постом (useEffect getPostComments)
+              setCommentingMode(false);//закрыть окно комментирования 
+              props.setModifyPosts(!props.modifyPosts)// обновить посты на main (useEffect getPosts)
+             } )}
+    
+    //поставить Лайк (клик на сердечко)
     const putLike = () => {
         if (props.authorized == true) {
             setYouLiked(true);
             api.putLike(id).then(ans => {
                 console.log(ans);
-                setEdited(!edited);
-                props.setModifyPosts(!props.modifyPosts)}             
+                setEdited(!edited); //обновить этот пост (useEffect getPost)            
+                props.setModifyPosts(!props.modifyPosts)} // обновить посты на main (useEffect getPosts)            
           )}}
 
+    //убрать Лайк (клик на сердечко)
     const offLike = () => {
         if (props.authorized == true) {
             setYouLiked(false);
             api.offLike(id).then(ans => {
                 console.log(ans);
-                setEdited(!edited);
-                props.setModifyPosts(!props.modifyPosts)}             
+                setEdited(!edited); //обновить этот пост (useEffect getPost)
+                props.setModifyPosts(!props.modifyPosts)} // обновить посты на main (useEffect getPosts)          
           )}}
 
+    //удалить пост (на кнопку 'delete') 
     const deletePost = () => {
-       let answer = window.confirm("Are you sure you want to DELETE this post? This action is irreversable.");
+       let answer = window.confirm("Are you sure you want to DELETE this post? This action could not be cancelled.");
         if (answer) {api.delPost(post._id).then(ans => {
               console.log(ans);
-               alert("Post is deleted.");
-               props.setModifyPosts(!props.modifyPosts);   
+            //   alert("Post is deleted.");
+              props.setModifyPosts(!props.modifyPosts); 
+             props.setDelModalActivity(true);
              });
-        navigate("/")}
+             props.setModifyPosts(!props.modifyPosts); // обновить посты на main (useEffect getPosts)  
+            //  document.querySelector(".edit_wrapper").setAttribute("visibility", "hidden");
+        // navigate("/"); 
+        
+    }
     }
 
+    //автор включает режим правки поста (на кнопку "Edit")
     const editPost = () => {
-        setCanSave(true);
-        document.querySelector(".editBtn-edit").disabled=true;
-        setEditMode(true);
+        setCanSave(true); //активация кнопки 'Save'
+        document.querySelector(".editBtn-edit").disabled=true;//выключаем кнопку "Edit"
+        setEditMode(true);//активация режима правки поста
     }
 
+    //сохранить изменения в  посте (на кнопку "Save")    
     const savePost = () => {
         let newTitle = document.querySelector(".editTitleInp").value;
         let newText = document.querySelector(".editTextInp").value;
         let newUrl = document.querySelector(".editUrlInp").value;
         let newTags = document.querySelector(".editTagsInp").value.split(',').map(el => el.trim());
-        setCanSave(false);
-        document.querySelector(".editBtn-edit").disabled=false;
-        setEditMode(false);
-        api.savePost(id, newUrl, newTags, newTitle, newText)
-        .then(ans => {
+        setCanSave(false); //выключаем кнопку "Save"
+        document.querySelector(".editBtn-edit").disabled=false;//активация кнопки 'Edit'
+        setEditMode(false);//выключаем режим правки поста
+        api.savePost(id, newUrl, newTags, newTitle, newText).then(ans => {
             console.log(ans); 
-            console.log(props.modifyPosts);
-            props.setModifyPosts(!props.modifyPosts);  
-            console.log(props.modifyPosts);   
-            setEdited(!edited);
-            
+            props.setModifyPosts(!props.modifyPosts);// обновить посты на main (useEffect getPosts)  
+            setEdited(!edited); //обновить этот пост (useEffect getPost)   
         }); 
-        // props.setModifyPosts(!props.modifyPosts); 
+        // props.setModifyPosts(!props.modifyPosts);
     }
 
     useEffect(() => {
+        // document.querySelector(".edit_wrapper").setAttribute("visibility", "visible");
         api.getPost(id).then(ans => {
           setPost(ans);
           let likesArray = ans.likes;
@@ -92,15 +102,18 @@ const EditPost = (props) => {
             }});
     }, [edited])
 
+
+    //загрузка комментов к посту
     useEffect(() => {
+        
         api.getPostComments(id).then(ans => {
         console.log(ans);
         setComments(ans)
         });
-    }, [sendMode])
+    }, [sendMode]) // слушает добавление и удаление
 
     return (
-       <div className="wrapper">
+       <div className="wrapper edit_wrapper">
           <div className="editForm">
 
           <div className="editAuthor">
@@ -162,10 +175,12 @@ const EditPost = (props) => {
                 : <span>''</span>}
 
                  <div className="editComments">
-                     {comments.map(el => <Comment {...el} key={el._id} userId={props.userId} sendMode={sendMode} setSendMode={setSendMode}/>)}
-
+                     {comments.map(el => <Comment {...el} 
+                                        key={el._id} userId={props.userId} 
+                                        sendMode={sendMode} setSendMode={setSendMode}
+                                        setModifyPosts={props.setModifyPosts}
+                                        modifyPosts={props.modifyPosts}/>)}
                  </div>
-
         </div>
     )
 }

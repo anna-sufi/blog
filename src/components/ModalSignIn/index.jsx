@@ -6,13 +6,29 @@ const ModalSignIn = (props) => {
     const [password, setPassword] = useState("");  
 
     const signInHandler = () => {
-       api.signIn(props.email, password).then(ans => {
-           console.log(ans);
-           props.setAuthorized(true);
-           props.changeActive(!props.active);
-           props.setUser(ans.data && ans.data.name);
-           props.setUserId(ans.data && ans.data._id);
-        } )}
+        if (props.email && password) {
+           api.signIn(props.email, password).then(ans => {
+             console.log(ans);
+             localStorage.setItem("token", ans.token);// обновление токена в хранилище
+             console.log(localStorage.getItem("token"));
+             props.setAuthorized(true);
+             props.changeActive(!props.active);
+             props.setUser(ans.data && ans.data.name);
+             props.setUserId(ans.data && ans.data._id);
+           } )
+          .catch(err => {
+             
+              if (err.includes("401")) {
+                 alert(`Cannot sign in because: Invalid login or password!`);
+                } 
+            else {
+                 if (err.includes("404")) {
+                 alert('Cannot sign in because: This email is not registred!');
+                } else {alert(`Cannot sign in because: ${err}`)}
+               }
+          })
+       } else {alert(`Enter all data`)}
+    }
 
     const signUpHandler = () => {
         props.openSignUp(true);
